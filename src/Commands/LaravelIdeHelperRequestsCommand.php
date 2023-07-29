@@ -2,10 +2,10 @@
 
 namespace Wasinpwg\LaravelIdeHelperExtended\Commands;
 
-use ReflectionClass;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use ReflectionClass;
 
 class LaravelIdeHelperRequestsCommand extends Command
 {
@@ -21,16 +21,16 @@ class LaravelIdeHelperRequestsCommand extends Command
         $files = File::allFiles($path);
         $writeStirng = "<?php\n\n\n";
         foreach ($files as $file) {
-            $class = $namespace . Str::of($file->getPathname())->after($path)->rtrim(".php")->replace('/', '\\');
+            $class = $namespace.Str::of($file->getPathname())->after($path)->rtrim('.php')->replace('/', '\\');
             if (class_exists($class)) {
                 $reflection = new ReflectionClass($class);
-                if (!$reflection->isAbstract()) {
+                if (! $reflection->isAbstract()) {
                     $classInstance = new $class();
                     try {
                         $rules = (new $classInstance())->rules();
                         $keys = array_filter((array_keys($rules)),
                             function ($key) {
-                                return !str_contains($key, '.*');
+                                return ! str_contains($key, '.*');
                             }
                         );
                         $namespaceClass = Str::beforeLast($class, '\\');
@@ -38,7 +38,7 @@ class LaravelIdeHelperRequestsCommand extends Command
                             $keyTypes = [];
                             $rule = $rules[$key];
                             if (is_string($rule)) {
-                                $rule = explode("|", $rule);
+                                $rule = explode('|', $rule);
                             }
                             $types = [
                                 'integer' => ['integer'],
@@ -46,12 +46,12 @@ class LaravelIdeHelperRequestsCommand extends Command
                                 'array' => ['array'],
                                 'boolean' => ['boolean'],
                                 'nullable' => ['null'],
-                                'numeric' => ['integer', 'float', 'string']
+                                'numeric' => ['integer', 'float', 'string'],
                             ];
                             $isRequired = false;
                             foreach ($types as $type => $typeValue) {
                                 foreach ($rule as $ruleType) {
-                                    if (!is_string($ruleType)) {
+                                    if (! is_string($ruleType)) {
                                         continue;
                                     }
                                     if (trim($ruleType) === 'required') {
@@ -62,12 +62,13 @@ class LaravelIdeHelperRequestsCommand extends Command
                                     }
                                 }
                             }
-                            if (!$keyTypes) {
+                            if (! $keyTypes) {
                                 $keyTypes = ['mixed'];
-                            } elseif (!$isRequired) {
+                            } elseif (! $isRequired) {
                                 $keyTypes[] = 'null';
                             }
                             $keyType = implode('|', $keyTypes);
+
                             return " * @property $keyType $key";
                         }, $keys);
                         $className = Str::afterLast($class, '\\');
