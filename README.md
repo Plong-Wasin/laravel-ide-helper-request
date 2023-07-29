@@ -5,15 +5,8 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/Plong-Wasin/laravel-ide-helper-extended/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/Plong-Wasin/laravel-ide-helper-extended/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/wasinpwg/laravel-ide-helper-extended.svg?style=flat-square)](https://packagist.org/packages/wasinpwg/laravel-ide-helper-extended)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-ide-helper-extended.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-ide-helper-extended)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+The provided code represents a Laravel package that aims to enhance the IDE (Integrated Development Environment) autocompletion and code intelligence for certain Laravel components, specifically models and form requests. The package consists of two custom artisan commands: ide-helper:fix and ide-helper:requests.
 
 ## Installation
 
@@ -23,43 +16,15 @@ You can install the package via composer:
 composer require wasinpwg/laravel-ide-helper-extended
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-ide-helper-extended-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="laravel-ide-helper-extended-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-ide-helper-extended-views"
-```
-
 ## Usage
+1. ide-helper:fix Command:
+Purpose: Generates additional class definitions extending Laravel's authentication-related classes for models that extend Illuminate\Foundation\Auth\User, improving IDE autocompletion for authentication methods.
 
-```php
-$laravelIdeHelperExtended = new Wasinpwg\LaravelIdeHelperExtended();
-echo $laravelIdeHelperExtended->echoPhrase('Hello, Wasinpwg!');
-```
-
-## Testing
-
+2. ide-helper:requests Command:
+Purpose: Generates additional class definitions extending Laravel's form request classes and adds PHPDoc-style comments with data type information for form fields, enhancing IDE autocompletion for validation rules.
 ```bash
-composer test
+php artisan ide-helper:fix
+php artisan ide-helper:requests
 ```
 
 ## Changelog
