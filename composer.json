@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "wasinpwg/laravel-ide-helper-extended",
+    "description": "This is my package laravel-ide-helper-extended",
     "keywords": [
-        ":vendor_name",
+        "wasinpwg",
         "laravel",
-        ":package_slug"
+        "laravel-ide-helper-extended"
     ],
-    "homepage": "https://github.com/:author_username/:package_slug",
+    "homepage": "https://github.com/Plong-Wasin/laravel-ide-helper-extended",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Wasin Phungwigrai",
+            "email": "wasin.pwg@gmail.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "Wasinpwg\\LaravelIdeHelperExtended\\": "src/",
+            "Wasinpwg\\LaravelIdeHelperExtended\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/"
+            "Wasinpwg\\LaravelIdeHelperExtended\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Wasinpwg\\LaravelIdeHelperExtended\\LaravelIdeHelperExtendedServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelIdeHelperExtended": "Wasinpwg\\LaravelIdeHelperExtended\\Facades\\LaravelIdeHelperExtended"
             }
         }
     },
