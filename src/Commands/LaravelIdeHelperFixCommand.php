@@ -2,10 +2,10 @@
 
 namespace Wasinpwg\LaravelIdeHelperExtended\Commands;
 
-use ReflectionClass;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use ReflectionClass;
 
 class LaravelIdeHelperFixCommand extends Command
 {
@@ -21,6 +21,7 @@ class LaravelIdeHelperFixCommand extends Command
         File::put(base_path('_ide_helper_fix.php'), $writeStirng);
         $this->info('Write _ide_helper_fix.php success.');
     }
+
     protected function fixAuth()
     {
         $namespace = 'App\Models';
@@ -29,10 +30,10 @@ class LaravelIdeHelperFixCommand extends Command
         $files = File::allFiles($path);
         $writeStirng = "<?php\n\n\n";
         foreach ($files as $file) {
-            $class = $namespace . Str::of($file->getPathname())->after($path)->rtrim(".php")->replace('/', '\\');
+            $class = $namespace.Str::of($file->getPathname())->after($path)->rtrim('.php')->replace('/', '\\');
             if (class_exists($class)) {
                 $reflection = new ReflectionClass($class);
-                if (!$reflection->isAbstract() && $reflection->isSubclassOf('Illuminate\\Foundation\\Auth\\User')) {
+                if (! $reflection->isAbstract() && $reflection->isSubclassOf('Illuminate\\Foundation\\Auth\\User')) {
                     $writeStirng .= <<<TEXT
 namespace Illuminate\\Contracts\\Auth {
 /**
@@ -46,8 +47,10 @@ TEXT;
                 }
             }
         }
+
         return $writeStirng;
     }
+
     protected function fixWithQueryString()
     {
         $write = <<<TEXT
@@ -60,6 +63,7 @@ namespace Illuminate\Contracts\Pagination{
 
 
 TEXT;
+
         return $write;
     }
 }
