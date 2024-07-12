@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-ide-helper-extended` will be documented in this file.
 
+## v0.1.1 - 2024-07-12
+
+### What's Changed
+
+* Support Laravel 11 by @Plong-Wasin in https://github.com/Plong-Wasin/laravel-ide-helper-extended/pull/4
+
+### New Contributors
+
+* @Plong-Wasin made their first contribution in https://github.com/Plong-Wasin/laravel-ide-helper-extended/pull/4
+
+**Full Changelog**: https://github.com/Plong-Wasin/laravel-ide-helper-extended/compare/v0.1.0...v0.1.1
+
 ## v0.1.0 - 2023-07-29
 
 ### [Package Name] v1.0.0 Release - [Date]
@@ -32,12 +44,14 @@ For new users:
 ```bash
 composer require wasinpwg/laravel-ide-helper-extended
 
+
 ```
 1. use it
 
 ```bash
 php artisan ide-helper:requests
 php artisan ide-helper:fix
+
 
 ```
 #### What's Changed
